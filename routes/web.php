@@ -2,7 +2,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,6 +22,11 @@ Route::post('/contacto', function (Request $request) {
     #dd($request->all());
     #el metodo dd es un metodo que permite debugear todo lo que esté en la variable $request
 
+    $contact= new App\Models\Contact(); #crear un objeto de tipo Contacto
+    $contact->nombre=$request->nombre;
+    $contact->email=$request->email;
+    $contact->mensaje=$request->mensaje;
+    $contact->save(); #guardar en la base de datos
     return "Datos enviados correctamente";
 });
 
